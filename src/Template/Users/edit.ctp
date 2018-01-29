@@ -14,8 +14,6 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Logins'), ['controller' => 'Logins', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Login'), ['controller' => 'Logins', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="users form large-9 medium-8 columns content">
@@ -24,12 +22,10 @@
         <legend><?= __('Edit User') ?></legend>
         <?php
             echo $this->Form->control('firstname');
-            echo $this->Form->control('MI');
+            echo $this->Form->control('mi');
             echo $this->Form->control('lastname');
             echo $this->Form->control('contactnumber');
             echo $this->Form->control('email');
-            echo $this->Form->control('logins_id');
-            echo $this->Form->control('logins_roles_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

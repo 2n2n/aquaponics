@@ -9,10 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \App\Model\Table\LoginsTable|\Cake\ORM\Association\BelongsTo $Logins
- * @property \App\Model\Table\LoginsTable|\Cake\ORM\Association\BelongsTo $Logins
- * @property \App\Model\Table\LoginsTable|\Cake\ORM\Association\HasMany $Logins
- *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -33,22 +29,10 @@ class UsersTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+        $this->addBehavior('Timestamp');
         $this->setTable('users');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
-
-        $this->belongsTo('Logins', [
-            'foreignKey' => 'logins_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Logins', [
-            'foreignKey' => 'logins_roles_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Logins', [
-            'foreignKey' => 'user_id'
-        ]);
     }
 
     /**
@@ -65,26 +49,23 @@ class UsersTable extends Table
 
         $validator
             ->scalar('firstname')
-            ->maxLength('firstname', 20)
-            ->requirePresence('firstname', 'create')
-            ->notEmpty('firstname');
+            ->maxLength('firstname', 45)
+            ->allowEmpty('firstname');
 
         $validator
-            ->scalar('MI')
-            ->maxLength('MI', 20)
-            ->allowEmpty('MI');
+            ->scalar('mi')
+            ->maxLength('mi', 45)
+            ->allowEmpty('mi');
 
         $validator
             ->scalar('lastname')
-            ->maxLength('lastname', 20)
-            ->requirePresence('lastname', 'create')
-            ->notEmpty('lastname');
+            ->maxLength('lastname', 45)
+            ->allowEmpty('lastname');
 
         $validator
             ->scalar('contactnumber')
-            ->maxLength('contactnumber', 15)
-            ->requirePresence('contactnumber', 'create')
-            ->notEmpty('contactnumber');
+            ->maxLength('contactnumber', 45)
+            ->allowEmpty('contactnumber');
 
         $validator
             ->email('email')
@@ -103,8 +84,6 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['logins_id'], 'Logins'));
-        $rules->add($rules->existsIn(['logins_roles_id'], 'Logins'));
 
         return $rules;
     }

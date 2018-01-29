@@ -4,18 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * Role Entity
  *
  * @property int $id
- * @property string $firstname
- * @property string $mi
- * @property string $lastname
- * @property string $contactnumber
- * @property string $email
+ * @property string $type
  *
  * @property \App\Model\Entity\Login[] $logins
  */
-class User extends Entity
+class Role extends Entity
 {
 
     /**
@@ -28,11 +24,7 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'firstname' => true,
-        'mi' => true,
-        'lastname' => true,
-        'contactnumber' => true,
-        'email' => true,
+        'type' => true,
         'logins' => true
     ];
 }
