@@ -11,9 +11,11 @@ use Cake\ORM\Entity;
  * @property string $password
  * @property int $roles_id
  * @property int $users_id
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Role $role
+ * @property \App\Model\Entity\User $user
  */
 class Login extends Entity
 {
@@ -30,8 +32,10 @@ class Login extends Entity
     protected $_accessible = [
         'username' => true,
         'password' => true,
-        'user' => true,
-        'role' => true
+        'created' => true,
+        'modified' => true,
+        'roles_id' => true,
+        'users_id' => true
     ];
 
     /**

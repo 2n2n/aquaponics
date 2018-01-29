@@ -19,6 +19,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Login patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Login[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Login findOrCreate($search, callable $callback = null, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class LoginsTable extends Table
 {
@@ -35,7 +37,9 @@ class LoginsTable extends Table
 
         $this->setTable('logins');
         $this->setDisplayField('id');
-        $this->setPrimaryKey(['id', 'roles_id']);
+        $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
 
         $this->belongsTo('Roles', [
             'foreignKey' => 'roles_id',

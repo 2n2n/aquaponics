@@ -35,4 +35,21 @@ class User extends Entity
         'email' => true,
         'logins' => true
     ];
+
+    protected function _getLabel() {
+        return sprintf("ID#%d - %s, %s %s", 
+            $this->_properties['id'],
+            $this->_properties['lastname'],
+            $this->_properties['firstname'],
+            $this->_properties['mi']
+        );
+    }
+
+    protected function _getFullname() {
+        return sprintf("%s, %s %s",
+            $this->_properties['lastname'],
+            $this->_properties['firstname'],
+            $this->_properties['mi']
+        );
+    }
 }
