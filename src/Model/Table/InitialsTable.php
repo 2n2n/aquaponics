@@ -99,7 +99,7 @@ class InitialsTable extends Table
 
     public function beforeSave($event, $entity) {
         $kind = $this->Kinds->get($entity->kinds_id);
-        $this->kinds_initialtypes_id = $kind->id;
-        
+        $entity->kinds_initialtypes_id = $kind->id;
+        $entity->users_id = 1;   
     }
 }

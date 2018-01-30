@@ -8,7 +8,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Aquaponics Dashboard') ?></li>
         <li><?= $this->Html->link(__('Aquaponics Management'), ['controller' => 'Initials', 'action' => 'index']) ?></li>        
-        <li><?= $this->Html->link(__('Account Management'), ['controller' => 'Logins', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Accounts & User Management'), ['controller' => 'Logins', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('User Management'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Role Management'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
     </ul>
