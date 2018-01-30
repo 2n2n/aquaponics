@@ -6,8 +6,10 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('Accounts Management') ?></li>
         <li><?= $this->Html->link(__('New Role'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('User Management'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Login Management'), ['controller' => 'Logins', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="roles index large-9 medium-8 columns content">

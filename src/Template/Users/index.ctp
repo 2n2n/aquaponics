@@ -7,6 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('Add User'), ['action' => 'add']) ?></li>        
         <li><?= $this->Html->link(__('Login Management'), ['controller' => 'Logins', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Role Management'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
     </ul>
