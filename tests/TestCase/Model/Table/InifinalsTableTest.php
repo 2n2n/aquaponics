@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\FinalsTable;
+use App\Model\Table\InifinalsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\FinalsTable Test Case
+ * App\Model\Table\InifinalsTable Test Case
  */
-class FinalsTableTest extends TestCase
+class InifinalsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\FinalsTable
+     * @var \App\Model\Table\InifinalsTable
      */
-    public $Finals;
+    public $Inifinals;
 
     /**
      * Fixtures
@@ -24,7 +24,7 @@ class FinalsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.finals',
+        'app.inifinals',
         'app.initials',
         'app.kinds',
         'app.types',
@@ -39,8 +39,8 @@ class FinalsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Finals') ? [] : ['className' => FinalsTable::class];
-        $this->Finals = TableRegistry::get('Finals', $config);
+        $config = TableRegistry::exists('Inifinals') ? [] : ['className' => InifinalsTable::class];
+        $this->Inifinals = TableRegistry::get('Inifinals', $config);
     }
 
     /**
@@ -50,7 +50,7 @@ class FinalsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Finals);
+        unset($this->Inifinals);
 
         parent::tearDown();
     }

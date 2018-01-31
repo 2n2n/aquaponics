@@ -7,25 +7,26 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Finals Model
+ * Inifinals Model
  *
  * @property \App\Model\Table\InitialsTable|\Cake\ORM\Association\BelongsTo $Initials
  * @property \App\Model\Table\InitialsTable|\Cake\ORM\Association\BelongsTo $Initials
  * @property \App\Model\Table\InitialsTable|\Cake\ORM\Association\BelongsTo $Initials
  *
- * @method \App\Model\Entity\Final get($primaryKey, $options = [])
- * @method \App\Model\Entity\Final newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Final[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Final|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Final patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Final[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Final findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Inifinal get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Inifinal newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Inifinal[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Inifinal|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Inifinal patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Inifinal[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Inifinal findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class FinalsTable extends Table
+class InifinalsTable extends Table
 {
 
+    public $status;
     /**
      * Initialize method
      *
@@ -36,7 +37,7 @@ class FinalsTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('finals');
+        $this->setTable('inifinals');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
@@ -44,15 +45,15 @@ class FinalsTable extends Table
 
         $this->belongsTo('Initials', [
             'foreignKey' => 'initials_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
-        $this->belongsTo('Initials', [
+        $this->belongsTo('Kinds', [
             'foreignKey' => 'initials_kinds_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
-        $this->belongsTo('Initials', [
+        $this->belongsTo('Types', [
             'foreignKey' => 'initials_kinds_initialtypes_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
     }
 
@@ -91,8 +92,8 @@ class FinalsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['initials_id'], 'Initials'));
-        $rules->add($rules->existsIn(['initials_kinds_id'], 'Initials'));
-        $rules->add($rules->existsIn(['initials_kinds_initialtypes_id'], 'Initials'));
+        // $rules->add($rules->existsIn(['initials_kinds_id'], 'Initials'));
+        // $rules->add($rules->existsIn(['initials_kinds_initialtypes_id'], 'Initials'));
 
         return $rules;
     }

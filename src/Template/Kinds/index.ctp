@@ -7,9 +7,8 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Kind'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Types'), ['controller' => 'Types', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Type'), ['controller' => 'Types', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Fish/Plant Kind'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Back'), ['controller' => 'Initials', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="kinds index large-9 medium-8 columns content">

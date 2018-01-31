@@ -5,7 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-
+use Cake\Network\Session;
 /**
  * Initials Model
  *
@@ -38,7 +38,7 @@ class InitialsTable extends Table
 
         $this->setTable('initials');
         $this->setDisplayField('id');
-        $this->setPrimaryKey(['id']);
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
@@ -99,7 +99,9 @@ class InitialsTable extends Table
 
     public function beforeSave($event, $entity) {
         $kind = $this->Kinds->get($entity->kinds_id);
-        $entity->kinds_initialtypes_id = $kind->id;
-        $entity->users_id = 1;   
+        $entity->kinds_initialtypes_id = $kind->types_id;
+        $session  = new Session();
+        $users_id = $session->read('Auth.User.users_id');
+        $entity->users_id = $users_id;   
     }
 }

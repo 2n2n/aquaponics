@@ -30,13 +30,18 @@ class Initial extends Entity
      *
      * @var array
      */
+
     protected $_accessible = [
         'quantity' => true,
         'unitprice' => true,
         'created' => true,
         'modified' => true,
         'kinds_id' => true,
-        'kinds_initial_types_id' => true,
+        'types_id' => true,
         'users_id' => true
     ];
+
+    public function setStatus($status) {
+        $this->status = $status;
+    }
 }

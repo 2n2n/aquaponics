@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Final Entity
+ * Inifinal Entity
  *
  * @property int $id
  * @property string $quantity
@@ -17,7 +17,7 @@ use Cake\ORM\Entity;
  *
  * @property \App\Model\Entity\Initial $initial
  */
-class Final extends Entity
+class Inifinal extends Entity
 {
 
     /**
@@ -37,6 +37,5 @@ class Final extends Entity
         'initials_kinds_initialtypes_id' => true,
         'created' => true,
         'modified' => true,
-        'initial' => true
     ];
 }

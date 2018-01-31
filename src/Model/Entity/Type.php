@@ -23,6 +23,6 @@ class Type extends Entity
      */
     protected $_accessible = [
         'label' => true,
-        'types_id' => true
+        'types_id' => true,
     ];
 }

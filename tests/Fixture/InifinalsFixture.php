@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * FinalsFixture
+ * InifinalsFixture
  *
  */
-class FinalsFixture extends TestFixture
+class InifinalsFixture extends TestFixture
 {
 
     /**
@@ -52,8 +52,8 @@ class FinalsFixture extends TestFixture
             'initials_id' => 1,
             'initials_kinds_id' => 1,
             'initials_kinds_initialtypes_id' => 1,
-            'created' => '2018-01-30 09:36:15',
-            'modified' => '2018-01-30 09:36:15'
+            'created' => '2018-01-30 09:38:26',
+            'modified' => '2018-01-30 09:38:26'
         ],
     ];
 }

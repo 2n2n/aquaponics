@@ -19,7 +19,21 @@ class InitialsController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Kinds', 'Types', 'Users']
+        ];
         $initials = $this->paginate($this->Initials);
+        $this->loadModel('Inifinals');
+        $_self = $this;
+        $initials = $initials->map(function($initial) use ($_self) {
+            $status = $_self->Inifinals->find('all', [
+                'conditions' => ['Inifinals.initials_id' => $initial->id]
+            ])->count() > 0 ? 'completed': 'on-going';
+                
+            $initial->setStatus($status);
+  
+            return $initial;
+        });
 
         $this->set(compact('initials'));
     }

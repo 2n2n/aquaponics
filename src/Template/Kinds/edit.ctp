@@ -24,7 +24,7 @@
         <legend><?= __('Edit Kind') ?></legend>
         <?php
             echo $this->Form->control('name');
-            echo $this->Form->control('initialtypes_id', ['options' => $types]);
+            echo $this->Form->control('types_id', ['options' => $types]);
             echo $this->Form->control('description');
         ?>
     </fieldset>

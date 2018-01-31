@@ -78,7 +78,7 @@ class KindsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $kind = $this->Kinds->patchEntity($kind, $this->request->getData());
+            $kind = $this->Kinds->patchEntity($kind, $this->request->getData(), ['Types']);
             if ($this->Kinds->save($kind)) {
                 $this->Flash->success(__('The kind has been saved.'));
 

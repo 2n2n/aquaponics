@@ -7,44 +7,50 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Aquaponics Management'), ['controller' => 'Initials', 'action' => 'index']) ?></li>        
-        <li><?= $this->Html->link(__('Account Management'), ['controller' => 'Logins', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('User Management'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('Role Management'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Add Initial Entry'), ['action' => 'add', 'class']) ?></li>
+        <li><?= $this->Html->link(__('Fish/Plant Kind Management'), ['controller' => 'Kinds', 'action' => 'index']) ?></li>        
+        <li><?= $this->Html->link(__('Sales Management'), ['controller' => 'Inifinals', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Back'), ['controller' => 'Pages', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="initials index large-9 medium-8 columns content">
     <h3><?= __('Aquaponics Management') ?></h3>
-    <?= $this->Html->link(__('Add Entry'), ['action' => 'add', 'class']) ?>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('quantity') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('unitprice') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('kinds_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('kinds_initialtypes_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('users_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('kinds_initialtypes_id', 'Type') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('quantity', 'Qty') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('unitprice', 'Unit Price') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('users_id', 'Encoder') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('status', 'Status') ?></th>                
+                <th scope="col">
+                    <?= $this->Paginator->sort('created') ?>
+                    <br/>
+                    <?= $this->Paginator->sort('modified') ?>
+                </th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($initials as $initial): ?>
             <tr>
-                <td><?= $this->Number->format($initial->id) ?></td>
+                <td><?= "[#". $initial->id ."]  ". ucfirst($initial->type->label) ." - ". ucfirst($initial->kind->name) ?></td>
                 <td><?= h($initial->quantity) ?></td>
                 <td><?= h($initial->unitprice) ?></td>
-                <td><?= $this->Number->format($initial->kinds_id) ?></td>
-                <td><?= $this->Number->format($initial->kinds_initialtypes_id) ?></td>
-                <td><?= $this->Number->format($initial->users_id) ?></td>
-                <td><?= h($initial->created) ?></td>
-                <td><?= h($initial->modified) ?></td>
+                <td><?= h($initial->status) ?></td>                
+                <td><?= $initial->user->fullname ?></td>
+                <td>
+                    <?= h($initial->created) ?>
+                    <br>
+                    <?= h($initial->modified) ?>
+                </td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $initial->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $initial->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $initial->id], ['confirm' => __('Are you sure you want to delete # {0}?', $initial->id)]) ?>
+                    <div><?= $this->Html->link(__('View'), ['action' => 'view', $initial->id]) ?></div>
+                    <?php if($initial->status == 'on-going'): ?>
+                    <div><?= $this->Html->link(__('Edit'), ['action' => 'edit', $initial->id]) ?></div>
+                    <div><?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $initial->id], ['confirm' => __('Are you sure you want to delete # {0}?', $initial->id)]) ?></div>
+                    <div><?= $this->Form->postLink(__('Harvest'), ['controller' => 'Inifinals','action' => 'add', $initial->id], ['confirm' => __('Are you sure you want to harvest # {0}?', $initial->id), 'method' => 'get']) ?></div>                    
+                    <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>

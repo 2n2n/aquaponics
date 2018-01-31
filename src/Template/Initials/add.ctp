@@ -7,8 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Fish/Plant Kind Management'), ['controller' => 'Kinds', 'action' => 'index']) ?></li>       
-        <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Back'), ['controller' => 'Initials', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="initials form large-9 medium-8 columns content">
@@ -25,8 +24,8 @@
                 echo $this->Form->control('unitprice');
             }
             else {
+                echo "<span style='color: red; margin-bottom: 20px; display: inline-block;'>No Fish/Plant Kind in the Database </span>";
                 echo "<p>";
-                echo "No Fish/Plant Kind in the Database ";
                 echo $this->Html->link(
                     'Proceed Fish/Plant Kind Management',
                     '/kinds',
