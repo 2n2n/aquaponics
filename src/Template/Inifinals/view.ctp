@@ -11,8 +11,18 @@
     </ul>
 </nav>
 <div class="inifinals view large-9 medium-8 columns content">
-    <h3><?= h($inifinal->id) ?></h3>
-    <table class="vertical-table">
+    <h3 style="margin-bottom: 0px;"><?= $this->Html->link("[#".$inifinal->initial->id."]", ['controller' => 'Initials', 'action' => 'view', $inifinal->initial->id]) ?> <?= ucfirst($inifinal->type->label) ?></h3>
+    <h6><?= h($inifinal->created) ?></h6>
+    <?php 
+        $gross = $inifinal->quantity * $inifinal->unitprice; 
+        $loss = ($inifinal->initial->quantity - $inifinal->quantity) * $inifinal->quantity;
+        $net = $gross - $loss;
+    ?>
+    <table class="vertical-table medium-4 large-4">
+        <tr>
+            <th scope="row"><?= __('Name') ?></th>
+            <td><?= ucfirst($inifinal->kind->name) ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Quantity') ?></th>
             <td><?= h($inifinal->quantity) ?></td>
@@ -21,29 +31,17 @@
             <th scope="row"><?= __('Unitprice') ?></th>
             <td><?= h($inifinal->unitprice) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Initial') ?></th>
-            <td><?= $inifinal->has('initial') ? $this->Html->link($inifinal->initial->id, ['controller' => 'Initials', 'action' => 'view', $inifinal->initial->id]) : '' ?></td>
+         <tr>
+            <th scope="row"><?= __('Gross Income') ?></th>
+            <td><?= $this->Number->format($gross) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($inifinal->id) ?></td>
+         <tr>
+            <th scope="row"><?= __('Loss') ?></th>
+            <td style="color: red;"><?= $this->Number->format($loss * -1) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Initials Id') ?></th>
-            <td><?= $this->Number->format($inifinal->initials_id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Initials Kinds Id') ?></th>
-            <td><?= $this->Number->format($inifinal->initials_kinds_id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($inifinal->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($inifinal->modified) ?></td>
+         <tr>
+            <th scope="row"><?= __('Net Income') ?></th>
+            <td><?= $this->Number->format($net) ?></td>
         </tr>
     </table>
 </div>

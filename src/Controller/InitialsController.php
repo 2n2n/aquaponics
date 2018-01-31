@@ -48,8 +48,15 @@ class InitialsController extends AppController
     public function view($id = null)
     {
         $initial = $this->Initials->get($id, [
-            'contain' => []
+            'contain' => ['Kinds', 'Types', 'Users']
         ]);
+
+        $this->loadModel('Inifinals');
+        $status = $this->Inifinals->find('all', [
+            'conditions' => ['Inifinals.initials_id' => $initial->id]
+        ])->count() > 0 ? 'completed': 'on-going';
+            
+        $initial->setStatus($status);
 
         $this->set('initial', $initial);
     }

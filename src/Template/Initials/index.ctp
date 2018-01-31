@@ -37,8 +37,8 @@
                 <td><?= "[#". $initial->id ."]  ". ucfirst($initial->type->label) ." - ". ucfirst($initial->kind->name) ?></td>
                 <td><?= h($initial->quantity) ?></td>
                 <td><?= h($initial->unitprice) ?></td>
-                <td><?= h($initial->status) ?></td>                
                 <td><?= $initial->user->fullname ?></td>
+                <td><?= h($initial->status) ?></td>                
                 <td>
                     <?= h($initial->created) ?>
                     <br>

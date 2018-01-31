@@ -7,38 +7,35 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Initial'), ['action' => 'edit', $initial->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Initial'), ['action' => 'delete', $initial->id], ['confirm' => __('Are you sure you want to delete # {0}?', $initial->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Initials'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Initial'), ['action' => 'add']) ?> </li>
+        <?php if($initial->status == 'on-going'): ?>
+        <li><?= $this->Html->link(__('Edit Initial Entry'), ['action' => 'edit', $initial->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Initial Entry'), ['action' => 'delete', $initial->id], ['confirm' => __('Are you sure you want to delete # {0}?', $initial->id)]) ?> </li>
+        <?php endif; ?>
+        <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?> </li>
     </ul>
 </nav>
 <div class="initials view large-9 medium-8 columns content">
-    <h3><?= h($initial->id) ?></h3>
-    <table class="vertical-table">
+        <h3 style="margin-bottom: 0px;"><?= $this->Html->link("[#".$initial->id."]", ['controller' => 'Initials', 'action' => 'view', $initial->id]) ?> <?= ucfirst($initial->type->label) ?></h3>
+    <table class="vertical-table medium-4 large-4">
+         <tr>
+            <th scope="row"><?= __('Name') ?></th>
+            <td><?= ucfirst($initial->kind->name) ?></td>
+        </tr>
         <tr>
             <th scope="row"><?= __('Quantity') ?></th>
             <td><?= h($initial->quantity) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Unitprice') ?></th>
-            <td><?= h($initial->unitprice) ?></td>
+            <td>P<?= h($initial->unitprice) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($initial->id) ?></td>
+            <th scope="row"><?= __('Encoder') ?></th>
+            <td><?= h($initial->user->fullname) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Kinds Id') ?></th>
-            <td><?= $this->Number->format($initial->kinds_id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Kinds Initialtypes Id') ?></th>
-            <td><?= $this->Number->format($initial->kinds_initialtypes_id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Users Id') ?></th>
-            <td><?= $this->Number->format($initial->users_id) ?></td>
+         <tr>
+            <th scope="row"><?= __('Status') ?></th>
+            <td><?= ucfirst(h($initial->status)) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Created') ?></th>
