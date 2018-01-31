@@ -8,12 +8,12 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Delete Initial Entry'),
                 ['action' => 'delete', $initial->id],
                 ['confirm' => __('Are you sure you want to delete # {0}?', $initial->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Initials'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Back'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="initials form large-9 medium-8 columns content">
