@@ -12,7 +12,7 @@ use App\Controller\AppController;
  */
 class PondsController extends AppController
 {
-    protected $title = 'Logs';
+
     /**
      * Index method
      *

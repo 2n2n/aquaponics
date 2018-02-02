@@ -6,13 +6,41 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Fish/Plant Kind'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('Back'), ['controller' => 'Initials', 'action' => 'index']) ?></li>
+        <li class="heading"><?= __('Aquaponics Dashboard') ?></li>
+        <li id="uri-home"><?= $this->Html->link(__('Aquaponics Dashboard'), ['controller' => 'Pages', 'action' => 'index']) ?></li>
+        <li id="uri-initials">
+            <?= $this->Html->link(__('Aquaponics Management'), ['controller' => 'Initials', 'action' => 'index']) ?>
+            <ul>
+                <li id="uri-ponds"><?= $this->Html->link(__('Logs'), ['controller' => 'Ponds', 'action' => 'index']) ?></li>
+            </ul>
+        </li>
+        <li id="uri-kinds"><?= $this->Html->link(__('Kinds Management'), ['controller' => 'Kinds', 'action' => 'index']); ?></li>
+        <li id="uri-inifinals"><?= $this->Html->link(__('Sales Management'), ['controller' => 'Inifinals', 'action' => 'index']); ?></li>
+        <li id="uri-logins">
+            <?= $this->Html->link(__('Accounts and Users'), ['controller' => 'Logins', 'action' => 'index']) ?>
+            <ul>
+                <li id="uri-logins"><?= $this->Html->link(__('Accounts Overview'), ['controller' => 'Logins', 'action' => 'index']) ?></li>
+                <li id="uri-roles"><?= $this->Html->link(__('Add Roles'), ['controller' => 'Roles', 'action' => 'add']) ?></li>
+                <li id="uri-users"><?= $this->Html->link(__('Add User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+                <li id="uri-logins"><?= $this->Html->link(__('Add Account Login'), ['controller' => 'Logins', 'action' => 'add']) ?></li>
+            </ul>
+        </li>
     </ul>
 </nav>
 <div class="kinds index large-9 medium-8 columns content">
-    <h3><?= __('Kinds') ?></h3>
+    <h3><?= __('Kinds Management') ?></h3>
+    <div>
+        <div class=" large-7 medium-7 column">
+            <?= $this->Html->link(__('Add New Kind'), ['action' => 'add'], ['class' => 'btn btn-warning']) ?>
+        </div>
+        <div class="dropdown large-5 medium-5 column">
+            <select name="" id="type">
+                <option value="all">All</option>
+                <option value="fishes">Fishes</option>
+                <option value="plants">Plants</option>        
+            </select>
+        </div>
+    </div>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>

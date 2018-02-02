@@ -87,5 +87,16 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function findNotInLogins($type, $options, $exclude_self = false) {
+        $q = $this
+            ->find($type, $options)
+            ->leftJoin(['Logins' => 'logins'], ['Logins.users_id = Users.id'])
+            ->where(['Logins.users_id IS NULL']);
+        if( $exclude_self ) {
+            $q->where(["Logins.users_id != {$this->id}"]);
+        }
+        return $q;
+    }
     
 }

@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
+use App\Model\Entity\User; 
 
 /**
  * Logins Controller
@@ -41,13 +43,20 @@ class LoginsController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {
+    {  
+        $this->loadModel('Users');
+        $this->loadModel('Roles');
+        
         $this->paginate = [
             'contain' => ['Roles', 'Users']
         ];
         $logins = $this->paginate($this->Logins);
-
-        $this->set(compact('logins'));
+        $this->paginate = [
+            'contain' => []
+        ];
+        $users = $this->paginate($this->Users);
+        $roles = $this->paginate($this->Roles);
+        $this->set(compact('logins', 'users', 'roles'));
     }
 
     /**
@@ -73,6 +82,7 @@ class LoginsController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Users');
         $login = $this->Logins->newEntity();
         if ($this->request->is('post')) {
             $login = $this->Logins->patchEntity($login, $this->request->getData());
@@ -84,7 +94,8 @@ class LoginsController extends AppController
             $this->Flash->error(__('The login could not be saved. Please, try again.'));
         }
         $roles = $this->Logins->Roles->find('list', ['limit' => 200]);
-        $users = $this->Logins->Users->find('list', ['limit' => 200]);
+        $users = $this->Logins->Users->findNotInLogins('list', [
+            'limit' => 200]);
         $this->set(compact('login', 'roles', 'users'));
     }
 
@@ -101,7 +112,19 @@ class LoginsController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $login = $this->Logins->patchEntity($login, $this->request->getData());
+            $data = $this->request->getData();
+            if( empty( $data['password'] ) ) {
+                unset($data['password']);
+            } 
+            else {
+                // check if current passord is same with the old one.
+                $hasher = new DefaultPasswordHasher;
+             
+                if( $hasher->check($data['password'], $login->get('password')) ) {
+                    unset($data['password']);
+                }
+            }
+            $login = $this->Logins->patchEntity($login, $data);
             if ($this->Logins->save($login)) {
                 $this->Flash->success(__('The login has been saved.'));
 
@@ -110,7 +133,10 @@ class LoginsController extends AppController
             $this->Flash->error(__('The login could not be saved. Please, try again.'));
         }
         $roles = $this->Logins->Roles->find('list', ['limit' => 200]);
-        $users = $this->Logins->Users->find('list', ['limit' => 200]);
+        $users = $this->Logins->Users->findNotInLogins('list', [
+            'limit' => 200
+        ])
+        ->orWhere(['Logins.users_id' => $id]);
         $this->set(compact('login', 'roles', 'users'));
     }
 

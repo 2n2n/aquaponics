@@ -1,0 +1,41 @@
+.btn {
+    border-radius: 0px;
+}
+
+.action-btn-container {
+    padding-bottom: 30px;
+    border-bottom: solid 1px solid #ddd;
+    overflow: auto;
+}
+#actions-sidebar {
+    padding: 0px;
+    padding-bottom: 99999px;
+}
+#actions-sidebar a:hover {
+    text-decoration: none;
+}
+#actions-sidebar ul.side-nav > li > ul {
+    margin: 0px;
+    overflow: hidden;
+    height: 0px;
+    transition: all .2s;
+}
+#actions-sidebar ul.side-nav > li > ul a:hover {
+    padding-left: 10px;
+    border-left: solid 5px;
+}
+#actions-sidebar ul.side-nav > li > ul a {
+    padding-left: 15px; 
+}
+#actions-sidebar ul.side-nav > li.active > a {
+    color: #797979;
+    background: #c7cecb !important;
+}
+#actions-sidebar ul.side-nav > li.active {
+    background: #e8e8e8;
+    
+}
+#actions-sidebar ul.side-nav > li.active ul {
+    height: auto;
+}
+

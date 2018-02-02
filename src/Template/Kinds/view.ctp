@@ -7,12 +7,7 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Kind'), ['action' => 'edit', $kind->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Kind'), ['action' => 'delete', $kind->id], ['confirm' => __('Are you sure you want to delete # {0}?', $kind->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Kinds'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Kind'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Types'), ['controller' => 'Types', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Type'), ['controller' => 'Types', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Back'), ['controller' => 'Kinds', 'action' => 'index']) ?> </li>
     </ul>
 </nav>
 <div class="kinds view large-9 medium-8 columns content">

@@ -40,7 +40,16 @@ class InifinalsController extends AppController
             'contain' => ['Initials', 'Types', 'Kinds']
         ]);
 
-        $this->set('inifinal', $inifinal);
+        $initial = $this->Inifinals->Initials->get($inifinal->initials_id,[
+            'contain' => ['Types', 'Kinds', 'Users']
+        ]);
+        
+        $status = $this->Inifinals->find('all', [
+            'conditions' => ['Inifinals.initials_id' => $initial->id]
+        ])->count() > 0 ? 'completed': 'on-going';
+            
+        $initial->setStatus($status);
+        $this->set(compact('inifinal', 'initial'));
     }
 
     /**

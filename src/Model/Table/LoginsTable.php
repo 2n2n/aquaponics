@@ -47,7 +47,7 @@ class LoginsTable extends Table
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'users_id',
-            'joinType' => 'INNER'
+            'joinType' => 'LEFT'
         ]);
     }
 
@@ -66,7 +66,7 @@ class LoginsTable extends Table
         $validator
             ->scalar('username')
             ->maxLength('username', 20)
-            ->allowEmpty('username');
+            ->requirePresence('username', true);
 
         $validator
             ->scalar('password')
@@ -91,4 +91,5 @@ class LoginsTable extends Table
 
         return $rules;
     }
+
 }

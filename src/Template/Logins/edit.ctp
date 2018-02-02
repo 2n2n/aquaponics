@@ -13,11 +13,7 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $login->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Logins'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Roles'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Role'), ['controller' => 'Roles', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Back'), ['controllers' => 'Logins', 'action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="logins form large-9 medium-8 columns content">
@@ -27,7 +23,7 @@
         <?php
         
             echo $this->Form->control('username');
-            echo $this->Form->control('password');
+            echo $this->Form->control('password', ['value' => '']);
             echo $this->Form->control('roles_id', ['options' => $roles, 'type' => 'select']); 
             echo $this->Form->control('users_id', ['options' => $users, 'type' => 'select' ]);
         ?>

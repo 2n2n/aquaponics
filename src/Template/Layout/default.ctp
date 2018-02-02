@@ -25,9 +25,11 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
-
+    <?= $this->Html->css('bootstrap.min.css'); ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('custom.css') ?>
+    
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -42,16 +44,21 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
         </ul>
         <div class="top-bar-section">
             <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+                <li>
+                    <?= $this->Html->link('Logout',['controller' => 'Logins', 'action' => 'logout']) ?>
+                </li>
             </ul>
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container clearfix">
+    <div class="container-fluid clearfix" style="padding: 0px;">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+        <?= $this->Html->script('jquery.min'); ?>
+        <?= $this->Html->script('bootstrap.bundle.min'); ?>        
+        <?= $this->Html->script('app'); ?>
+        
     </footer>
 </body>
 </html>

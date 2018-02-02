@@ -13,9 +13,7 @@
                 ['confirm' => __('Are you sure you want to delete # {0}?', $kind->id)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Kinds'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Types'), ['controller' => 'Types', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Type'), ['controller' => 'Types', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Back'), ['controller' => 'Kinds','action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="kinds form large-9 medium-8 columns content">

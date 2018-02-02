@@ -17,7 +17,7 @@ use Cake\ORM\Entity;
  */
 class User extends Entity
 {
-
+        const EXCLUDE_SELF = true;
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
