@@ -23,7 +23,9 @@ class KindsController extends AppController
         $this->paginate = [
             'contain' => ['Types']
         ];
-        $kinds = $this->paginate($this->Kinds);
+
+        $query = $this->Kinds->find('all');
+        $kinds = $this->paginate($query);
 
         $this->set(compact('kinds'));
     }
@@ -101,7 +103,8 @@ class KindsController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $kind = $this->Kinds->get($id);
-        if ($this->Kinds->delete($kind)) {
+        $this->Kinds->patchEntity($kind, ['deleted' => 1]);
+        if ($this->Kinds->save($kind)) {
             $this->Flash->success(__('The kind has been deleted.'));
         } else {
             $this->Flash->error(__('The kind could not be deleted. Please, try again.'));

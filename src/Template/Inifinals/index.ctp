@@ -44,7 +44,7 @@
             <?php foreach ($inifinals as $inifinal): ?>
             <tr>
                 <td>
-                    [#<?= $this->Number->format($inifinal->initials_id) ?>]
+                    [<?= $this->Number->format($inifinal->initials_id) ?>]
                     <?= ucfirst($inifinal->type->label) . ' - '. ucfirst($inifinal->kind->name) ?> 
                 </td>
                 <td>

@@ -65,9 +65,9 @@
                         <td><?= h($user->contactnumber) ?></td>
                         <td><?= h($user->email) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                            <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $user->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $user->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['controller' => 'Users', 'action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -147,8 +147,8 @@
                         <td><?= $this->Number->format($role->id) ?></td>
                         <td><?= h($role->type) ?></td>
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $role->id]) ?>
-                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $role->id]) ?>
+                            <?= $this->Html->link(__('View'), ['controller' => 'Roles', 'action' => 'view', $role->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['controller' => 'Roles', 'action' => 'edit', $role->id]) ?>
                             <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $role->id], ['confirm' => __('Are you sure you want to delete # {0}?', $role->id)]) ?>
                         </td>
                     </tr>

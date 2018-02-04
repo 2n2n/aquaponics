@@ -33,7 +33,7 @@ class Pond extends Entity
     protected $_accessible = [
         'created' => true,
         'modified' => true,
-        'pondscol' => true,
+        'distance_sensor' => true,
         'phlevel' => true,
         'templevel' => true,
         'turblevel' => true,

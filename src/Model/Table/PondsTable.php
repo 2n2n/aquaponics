@@ -59,9 +59,8 @@ class PondsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('pondscol')
-            ->maxLength('pondscol', 45)
-            ->allowEmpty('pondscol');
+            ->decimal('distance_sensor')
+            ->allowEmpty('distance_sensor');
 
         $validator
             ->decimal('phlevel')

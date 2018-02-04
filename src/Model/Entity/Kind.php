@@ -32,7 +32,8 @@ class Kind extends Entity
         'description' => true,
         'modified' => true,
         'created' => true,
-        'types_id' => true
+        'types_id' => true,
+        'deleted' => true
     ];
 
     protected function _getLabel() {

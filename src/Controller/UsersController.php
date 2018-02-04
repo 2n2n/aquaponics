@@ -82,7 +82,17 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+
+        if( $this->Auth->user()['id'] == $user->id) {
+            $this->loadModel('Logins');
+            $login = $this->Logins->find('all')
+                ->where(['users_id' => $this->Auth->user()['id']])
+                ->first();
+            $this->set(compact('user', 'login'));
+        }
+        else {
+            $this->set(compact('user'));
+        }
     }
 
     /**

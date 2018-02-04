@@ -39,14 +39,23 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
-                <h1><a href="<?= $this->Url->build('/') ?>"><?= $this->fetch('title') ?></a></h1>
+                <h1><a href="<?= $this->Url->build('/') ?>">Aquaponics System</a></h1>
             </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">
+                <?php 
+                    $is_logged_in = $this->request->session()->read('Auth.User'); 
+                ?>
+                <?php if( $is_logged_in ): ?>
+                <li>
+                    <?php $user_id = $is_logged_in['id']?>
+                    <?= $this->Html->link('My Account',['controller' => 'Users', 'action' => 'edit', $user_id]) ?>
+                </li>
                 <li>
                     <?= $this->Html->link('Logout',['controller' => 'Logins', 'action' => 'logout']) ?>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>

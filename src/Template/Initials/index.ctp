@@ -53,7 +53,7 @@
         <tbody>
             <?php foreach ($initials as $initial): ?>
             <tr>
-                <td><?= "[#". $initial->id ."]  ". ucfirst($initial->type->label) ." - ". ucfirst($initial->kind->name) ?></td>
+                <td><?= "[". $initial->id ."]  ". ucfirst($initial->type->label) ." - ". ucfirst($initial->kind->name) ?></td>
                 <td><?= h($initial->quantity) ?></td>
                 <td><?= h($initial->unitprice) ?></td>
                 <td><?= $initial->user->fullname ?></td>

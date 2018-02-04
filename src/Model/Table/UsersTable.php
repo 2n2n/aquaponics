@@ -54,7 +54,7 @@ class UsersTable extends Table
 
         $validator
             ->scalar('mi')
-            ->maxLength('mi', 45)
+            ->maxLength('mi', 2)
             ->allowEmpty('mi');
 
         $validator
@@ -64,6 +64,7 @@ class UsersTable extends Table
 
         $validator
             ->scalar('contactnumber')
+            ->integer('contactnumber')
             ->maxLength('contactnumber', 45)
             ->allowEmpty('contactnumber');
 
@@ -98,5 +99,10 @@ class UsersTable extends Table
         }
         return $q;
     }
-    
+
+    public function beforeSave($event, $entity) {
+        $entity->firstname = ucfirst(strtolower($entity->firstname));
+        $entity->mi = strtoupper($entity->mi);
+        $entity->lastname = ucfirst(strtolower($entity->lastname));
+    }
 }
