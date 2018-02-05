@@ -15,7 +15,12 @@
             </ul>
         </li>
         <li id="uri-kinds"><?= $this->Html->link(__('Kinds Management'), ['controller' => 'Kinds', 'action' => 'index']); ?></li>
-        <li id="uri-inifinals"><li><?= $this->Html->link(__('Sales Management'), ['controller' => 'Inifinals', 'action' => 'index']); ?></li>                </li>
+        <li id="uri-inifinals"><?= $this->Html->link(__('Sales Management'), ['controller' => 'Inifinals', 'action' => 'index']); ?></li>
+        <?php 
+        $role = $this->request->session()->read('Auth.User');
+        if( !is_null($role) ):
+            if($role['roles_id'] == 1):
+        ?>
         <li id="uri-logins">
             <?= $this->Html->link(__('Accounts and Users'), ['controller' => 'Logins', 'action' => 'index']) ?>
             <ul>
@@ -25,6 +30,9 @@
                 <li id="uri-logins"><?= $this->Html->link(__('Add Account Login'), ['controller' => 'Logins', 'action' => 'add']) ?></li>
             </ul>
         </li>
+        <?php
+            endif; 
+        endif; ?>
     </ul>
 </nav>
 <div class="initials index large-9 medium-8 columns content">

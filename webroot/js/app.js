@@ -13,5 +13,9 @@ $(function() {
         target.addClass('active');
         return;
     }
-    $('#uri-' + locations[0]).addClass('active');
+    target = $('#uri-' + locations[0]);
+    target.addClass('active');
+    setTimeout(function() {
+        target.find('ul').slideToggle({ timing: 200 });
+    }, 200);
 });

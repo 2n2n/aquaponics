@@ -16,6 +16,11 @@
         </li>
         <li id="uri-kinds"><?= $this->Html->link(__('Kinds Management'), ['controller' => 'Kinds', 'action' => 'index']); ?></li>
         <li id="uri-inifinals"><?= $this->Html->link(__('Sales Management'), ['controller' => 'Inifinals', 'action' => 'index']); ?></li>
+        <?php 
+        $role = $this->request->session()->read('Auth.User');
+        if( !is_null($role) ):
+            if($role['roles_id'] == 1):
+        ?>
         <li id="uri-logins">
             <?= $this->Html->link(__('Accounts and Users'), ['controller' => 'Logins', 'action' => 'index']) ?>
             <ul>
@@ -25,10 +30,14 @@
                 <li id="uri-logins"><?= $this->Html->link(__('Add Account Login'), ['controller' => 'Logins', 'action' => 'add']) ?></li>
             </ul>
         </li>
+        <?php
+            endif; 
+        endif; ?>
     </ul>
 </nav>
 <div class="logins index large-9 medium-8 columns content">
-    <h3><?= __('Aquaponics Dashboard') ?></h3>
-    <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate molestiae eveniet, aliquid ex in recusandae nam tempora eligendi officia ut fuga, dolorum dicta rerum, quibusdam odit omnis! Expedita, quasi quis.</p>
+    <h3 class="text-center"><?= __('Welcome to integrated Aquaponics Management System') ?></h3>
+    <p id="landing-img">
+        <img src="/img/logo.png" alt="aquaponics image" >
+    </p>
 </div>

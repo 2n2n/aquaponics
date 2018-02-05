@@ -49,7 +49,10 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
                 ?>
                 <?php if( $is_logged_in ): ?>
                 <li>
-                    <?php $user_id = $is_logged_in['id']?>
+                    <a href="#">Welcome, <?= ucfirst($is_logged_in['username']); ?></a>
+                </li>
+                <li>
+                    <?php $user_id = $is_logged_in['users_id']?>
                     <?= $this->Html->link('My Account',['controller' => 'Users', 'action' => 'edit', $user_id]) ?>
                 </li>
                 <li>
@@ -60,7 +63,7 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
         </div>
     </nav>
     <?= $this->Flash->render() ?>
-    <div class="container-fluid clearfix" style="padding: 0px;">
+    <div class="container-fluid clearfix" style="padding: 0px;" id="main-container">
         <?= $this->fetch('content') ?>
     </div>
     <footer>

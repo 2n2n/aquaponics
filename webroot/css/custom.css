@@ -36,6 +36,18 @@
     
 }
 #actions-sidebar ul.side-nav > li.active ul {
+    display:none;
     height: auto;
 }
 
+
+.content, #actions-sidebar {
+    padding-bottom: auto;
+    margin-bottom: auto;
+}
+#landing-img {
+    text-align: center;
+}
+#landing-img img{
+    height: 300px;
+}
