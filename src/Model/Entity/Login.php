@@ -35,7 +35,8 @@ class Login extends Entity
         'created' => true,
         'modified' => true,
         'roles_id' => true,
-        'users_id' => true
+        'users_id' => true,
+        'profile_img' => true
     ];
 
     /**
@@ -54,5 +55,46 @@ class Login extends Entity
 
             return $hasher->hash($value);
         }
+    }
+
+    public function ProfileUpload($id, $file, &$LoginsTable, &$Flash) {
+        $upload = new \Delight\FileUpload\FileUpload();
+        $default = WEBROOT.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.'profiles'; 
+        $upload->withTargetDirectory($default);
+        $upload->from('pictures');
+        try {
+            $uploadedFile = $upload->save();
+            $this->profile_img = $uploadedFile->getFilenameWithExtension();
+            $LoginsTable->save($this);
+        }
+        catch (\Delight\FileUpload\Throwable\InputNotFoundException $e) {
+            // input not found
+            $Flash->error($e->getMessage());
+            return false;
+        }
+        catch (\Delight\FileUpload\Throwable\InvalidFilenameException $e) {
+            // invalid filename
+            $Flash->error($e->getMessage());
+            return false;
+        }
+        catch (\Delight\FileUpload\Throwable\InvalidExtensionException $e) {
+            // invalid extension
+            $Flash->error($e->getMessage());
+            return false;
+        }
+        catch (\Delight\FileUpload\Throwable\FileTooLargeException $e) {
+            // file too large
+            $Flash->error($e->getMessage());
+            return false;
+        }
+        catch (\Delight\FileUpload\Throwable\UploadCancelledException $e) {
+            // upload cancelled
+            $Flash->error($e->getMessage());
+            return false;
+        }
+
+        return true;
+
+        
     }
 }

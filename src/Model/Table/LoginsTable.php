@@ -66,7 +66,8 @@ class LoginsTable extends Table
         $validator
             ->scalar('username')
             ->maxLength('username', 20)
-            ->requirePresence('username', true);
+            ->requirePresence('username', true)
+            ->allowEmpty('username', 'update');
 
         $validator
             ->scalar('password')

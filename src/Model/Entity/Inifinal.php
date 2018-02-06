@@ -2,7 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-
+use App\Model\Table\InitialsTable;
 /**
  * Inifinal Entity
  *
@@ -38,4 +38,16 @@ class Inifinal extends Entity
         'created' => true,
         'modified' => true,
     ];
+
+    public function calculateGross() {
+        return $this->quantity * $this->unitprice;
+    }
+
+    public function calculateLoss() {
+        return $this->initial->quantity * $this->initial->unitprice;
+    }
+
+    public function calculateNet() {
+        return $this->calculateGross() - $this->calculateLoss();
+    }
 }

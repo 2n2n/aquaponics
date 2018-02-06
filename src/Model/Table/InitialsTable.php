@@ -69,12 +69,12 @@ class InitialsTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('quantity')
+            ->integer('quantity')
             ->maxLength('quantity', 45)
             ->allowEmpty('quantity');
 
         $validator
-            ->scalar('unitprice')
+            ->decimal('unitprice')
             ->maxLength('unitprice', 45)
             ->allowEmpty('unitprice');
 

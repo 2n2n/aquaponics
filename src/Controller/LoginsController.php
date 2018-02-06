@@ -25,6 +25,10 @@ class LoginsController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
+                $this->loadModel('Logins');
+                $profile = $this->Logins->find('all')->where(['Logins.users_id' => $user['users_id']])->first()->profile_img;
+                $user['profile_img'] = $profile;
+                
                 $this->Auth->setUser($user);
                 return $this->redirect($this->Auth->redirectUrl());
             }

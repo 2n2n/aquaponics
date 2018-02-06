@@ -11,11 +11,12 @@ $(function() {
     var target = $('#uri-' + locations[0]).closest('ul').parents('li');
     if( target.length > 0 ) {
         target.addClass('active');
+        target.find('ul').css('display', 'block');
         return;
     }
     target = $('#uri-' + locations[0]);
     target.addClass('active');
     setTimeout(function() {
         target.find('ul').slideToggle({ timing: 200 });
-    }, 200);
+    }, 100);
 });

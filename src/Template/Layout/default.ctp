@@ -33,6 +33,7 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
+    <?= $this->Html->script('jquery.min'); ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
@@ -42,18 +43,31 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
                 <h1><a href="<?= $this->Url->build('/') ?>">Aquaponics System</a></h1>
             </li>
         </ul>
+        <?php 
+            $is_logged_in = $this->request->session()->read('Auth.User'); 
+        ?>
+        <?php 
+            if( !isset($force_hide) ):
+        ?>
         <div class="top-bar-section">
             <ul class="right">
-                <?php 
-                    $is_logged_in = $this->request->session()->read('Auth.User'); 
-                ?>
+                <li><a href="#" id="time"></a></li>
                 <?php if( $is_logged_in ): ?>
                 <li>
                     <a href="#">Welcome, <?= ucfirst($is_logged_in['username']); ?></a>
                 </li>
-                <li>
+                <li id="my-account">
                     <?php $user_id = $is_logged_in['users_id']?>
-                    <?= $this->Html->link('My Account',['controller' => 'Users', 'action' => 'edit', $user_id]) ?>
+                    <?php 
+                        $profile_link = $is_logged_in['profile_img'];
+                    ?>
+                    <?php 
+                    
+                    if(!empty($profile_link)): ?>
+                    <a href="/users/edit/<?= $is_logged_in['users_id']?>"><img src='/img/profiles/<?= $profile_link ?>'> My Account</a>
+                    <?php else: ?>
+                    <a href="/users/edit/<?=$is_logged_in['users_id']?>"><img src='/img/profile-default.jpg'> My Account</a>                        
+                    <?php endif; ?>
                 </li>
                 <li>
                     <?= $this->Html->link('Logout',['controller' => 'Logins', 'action' => 'logout']) ?>
@@ -61,16 +75,24 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
                 <?php endif; ?>
             </ul>
         </div>
+            <?php endif; ?>
     </nav>
     <?= $this->Flash->render() ?>
     <div class="container-fluid clearfix" style="padding: 0px;" id="main-container">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
-        <?= $this->Html->script('jquery.min'); ?>
         <?= $this->Html->script('bootstrap.bundle.min'); ?>        
         <?= $this->Html->script('app'); ?>
-        
+        <script>
+        window.onload = function(){date()}, setInterval(function(){date()}, 1000);
+
+        function date() {
+            var now = new Date(),
+                now = (now.getMonth() + 1)+ "/" + now.getDate() +"/"+ now.getFullYear()+" "+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds();
+            $('#time').html(now);
+        }
+</script>
     </footer>
 </body>
 </html>

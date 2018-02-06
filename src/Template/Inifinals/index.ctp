@@ -58,14 +58,12 @@
                 <td>
                     P
                         <?php 
-                        echo $this->Number->format($inifinal->quantity * $inifinal->unitprice)
+                        echo $this->Number->format($inifinal->calculateGross());
                     ?>
                 </td>
                 <td>
                     P <?php 
-                        $gross = $inifinal->quantity * $inifinal->unitprice;
-                        $net = $gross - (($inifinal->initial->quantity - $inifinal->quantity) * $inifinal->unitprice);
-                        echo $this->Number->format($net);
+                        echo $this->Number->format($inifinal->calculateNet());
                     ?>
                 </td>
                 <td><?= h($inifinal->initial->user->fullname) ?></td>                

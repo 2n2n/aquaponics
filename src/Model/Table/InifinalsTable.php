@@ -98,3 +98,4 @@ class InifinalsTable extends Table
         return $rules;
     }
 }
+

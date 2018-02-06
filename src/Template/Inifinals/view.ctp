@@ -11,7 +11,7 @@
     </ul>
 </nav>
 <div class="inifinals view large-9 medium-8 columns content">
-    <h3 style="margin-bottom: 0px;"><?= $this->Html->link("[#".$inifinal->initial->id."]", ['controller' => 'Initials', 'action' => 'view', $inifinal->initial->id]) ?> <?= ucfirst($inifinal->type->label) ?></h3>
+    <h3 style="margin-bottom: 0px;"><?= $this->Html->link("[".$inifinal->initial->id."]", ['controller' => 'Initials', 'action' => 'view', $inifinal->initial->id]) ?> <?= ucfirst($inifinal->type->label) ?></h3>
     <h6><?= h($inifinal->created) ?></h6>
     <a href="javascript:void(0)" class="button" onclick="printReport()">Print</a>
     <?php 
@@ -71,15 +71,15 @@
                 </tr>
                 <tr>
                     <th scope="row"><?= __('Gross Income') ?></th>
-                    <td>P<?= $this->Number->format($gross) ?></td>
+                    <td>P<?= $this->Number->format($inifinal->calculateGross()) ?></td>
                 </tr>
                 <tr>
                     <th scope="row"><?= __('Loss') ?></th>
-                    <td style="color: red;">P<?= $this->Number->format($loss * -1) ?></td>
+                    <td style="color: red;">P<?= $this->Number->format($inifinal->calculateLoss() * -1) ?></td>
                 </tr>
                 <tr>
                     <th scope="row"><?= __('Net Income') ?></th>
-                    <td>P<?= $this->Number->format($net) ?></td>
+                    <td>P<?= $this->Number->format($inifinal->calculateNet()) ?></td>
                 </tr>
             </table >
         </div>
@@ -88,11 +88,13 @@
 <script>
     var printReport = function() {
         var prtContent = document.getElementById("printable");
-        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-        WinPrint.document.write(prtContent.innerHTML);
-        WinPrint.document.close();
-        WinPrint.focus();
-        WinPrint.print();
-        WinPrint.close();
+        var WinPrint = window.open('/inifinals/print', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        setTimeout(function() {
+            WinPrint.document.getElementById('print-document').innerHTML=prtContent.innerHTML;
+            WinPrint.document.close();
+            WinPrint.focus();
+            WinPrint.print();
+            // WinPrint.close();
+        }, 1000);
     } 
 </script>

@@ -13,6 +13,10 @@ use App\Controller\AppController;
 class InifinalsController extends AppController
 {
 
+    public function beforeFilter(\Cake\Event\Event $event){
+        parent::beforeFilter($event);   
+        $this->Auth->allow(['print']);
+    }
     /**
      * Index method
      *
@@ -47,8 +51,9 @@ class InifinalsController extends AppController
         $status = $this->Inifinals->find('all', [
             'conditions' => ['Inifinals.initials_id' => $initial->id]
         ])->count() > 0 ? 'completed': 'on-going';
-            
+        
         $initial->setStatus($status);
+        
         $this->set(compact('inifinal', 'initial'));
     }
 
@@ -122,5 +127,9 @@ class InifinalsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function print() {
+        $this->set('force_hide', true);
     }
 }

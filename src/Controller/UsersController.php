@@ -75,26 +75,47 @@ class UsersController extends AppController
             ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            if(isset($_FILES) && $_POST['edit_profilepic']) {
+                $this->loadModel('Logins');
+                $LoginsTable = $this->Logins;
+                $login = $this->Logins->get($this->Auth->user()['id']);
+                if( $login->ProfileUpload($id, $_FILES, $LoginsTable, $this->Flash) ) {
+                    // update the session upon success.
+                    $_user = $this->Auth->user();
+                    $_user['profile_img'] = $login->profile_img;
+                    $this->Auth->setUser($_user);
+                }
+                
+                $this->renderEditProfile($user);
+                return;
+            }
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            
         }
-
-        if( $this->Auth->user()['id'] == $user->id) {
-            $this->loadModel('Logins');
-            $login = $this->Logins->find('all')
-                ->where(['users_id' => $this->Auth->user()['id']])
-                ->first();
-            $this->set(compact('user', 'login'));
+        $is_mine = $this->Auth->user()['users_id'] == $id;
+        
+        if( $is_mine ) {
+            $this->renderEditProfile($user, $is_mine);
         }
         else {
             $this->set(compact('user'));
         }
     }
 
+    public function renderEditProfile($user, $is_mine = true) {
+        $this->loadModel('Logins');
+        $login = $this->Logins->find('all')
+            ->where(['users_id' => $this->Auth->user()['id']])
+            ->first();
+        $profile_img = $login->profile_img;
+        
+        $this->set(compact('user', 'login', 'profile_img', 'is_mine'));
+    }
     /**
      * Delete method
      *
