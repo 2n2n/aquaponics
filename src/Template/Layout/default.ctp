@@ -33,7 +33,12 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
+    <?= $this->Html->script('socketio/dist/socket.io.js'); ?>
+    <?= $this->Html->script('moment'); ?>    
+        
     <?= $this->Html->script('jquery.min'); ?>
+    <?= $this->Html->script('chart') ?>
+    
     <?= $this->fetch('script') ?>
 </head>
 <body>
@@ -91,8 +96,8 @@ $cakeDescription = 'Aquaponics: Backend Built with CakePHP and Arduino';
             var now = new Date(),
                 now = (now.getMonth() + 1)+ "/" + now.getDate() +"/"+ now.getFullYear()+" "+now.getHours()+':'+now.getMinutes()+':'+now.getSeconds();
             $('#time').html(now);
-        }
-</script>
+            }            
+        </script>
     </footer>
 </body>
 </html>

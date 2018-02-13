@@ -74,7 +74,7 @@
                     <td>P<?= $this->Number->format($inifinal->calculateGross()) ?></td>
                 </tr>
                 <tr>
-                    <th scope="row"><?= __('Loss') ?></th>
+                    <th scope="row"><?= __('Initial Expense') ?></th>
                     <td style="color: red;">P<?= $this->Number->format($inifinal->calculateLoss() * -1) ?></td>
                 </tr>
                 <tr>
